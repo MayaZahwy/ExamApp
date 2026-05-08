@@ -1,0 +1,11 @@
+.app-shell {
+  color: #212529;
+}
+
+.card {
+  border-radius: 0.5rem;
+}
+
+.list-group-item {
+  line-height: 1.4;
+}
