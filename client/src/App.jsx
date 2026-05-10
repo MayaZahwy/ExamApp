@@ -1,11 +1,17 @@
 import { useState } from 'react'
 import './App.css'
+import Login from './Login'
 import StudentPortal from './StudentPortal'
 import TeacherDashboard from './TeacherDashboard'
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [role, setRole] = useState('teacher')
   const isTeacher = role === 'teacher'
+
+  if (!isLoggedIn) {
+    return <Login onLogin={() => setIsLoggedIn(true)} />
+  }
 
   return (
     <main className="app-shell bg-light min-vh-100">
