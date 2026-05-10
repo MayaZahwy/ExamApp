@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import ExamDetails from './ExamDetails'
 import { getAllExams, getStudentScores } from './api/examService'
 
 function TeacherDashboard() {
   const [exams, setExams] = useState([])
   const [scores, setScores] = useState([])
+  const [selectedExam, setSelectedExam] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
 
@@ -27,6 +29,12 @@ function TeacherDashboard() {
 
     loadDashboardData()
   }, [])
+
+  if (selectedExam) {
+    return (
+      <ExamDetails exam={selectedExam} onBack={() => setSelectedExam(null)} />
+    )
+  }
 
   return (
     <section className="container py-4 text-start">
@@ -63,6 +71,13 @@ function TeacherDashboard() {
                     </li>
                   ))}
                 </ul>
+                <button
+                  className="btn btn-primary mt-3"
+                  onClick={() => setSelectedExam(exam)}
+                  type="button"
+                >
+                  View Details
+                </button>
               </div>
             </div>
           </div>
